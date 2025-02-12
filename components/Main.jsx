@@ -2,10 +2,19 @@ import { useState } from "react"
 export default function Main() {
 
     const[ meme , setMeme ] = useState({
-        topText : "One does not simply", 
-        bottomText : "Walk into Mordor",
+        topText : "Something Up", 
+        bottomText : "Something Down",
         imageUrl : "http://i.imgflip.com/1bij.jpg"
     })
+
+    function handleClick(event){
+        let { value , name} = event.currentTarget
+         
+        setMeme( prev=>({
+            ...prev,
+            [name] : value
+        }) )
+    }
 
     return (
         <main>
@@ -15,6 +24,8 @@ export default function Main() {
                         type="text"
                         placeholder="One does not simply"
                         name="topText"
+                        onChange={handleClick}
+                        value = {meme.topText}
                     />
                 </label>
 
@@ -23,6 +34,8 @@ export default function Main() {
                         type="text"
                         placeholder="Walk into Mordor"
                         name="bottomText"
+                        onChange={handleClick}
+                        value = {meme.bottomText}
                     />
                 </label>
                 <button>Get a new meme image 🖼</button>
